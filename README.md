@@ -93,3 +93,119 @@ Deep for seatch exploring only one by time to the end. THen if it is wrong it us
 ### Imformed search 
 - search strategy that uses problem-specific knowledge to find solutions more effectively 
 
+### Greedy best-first search 
+- search algorithm that expands the node that is closest to the goal, as estimated by a heuristic function h(n)
+
+### A^ Search 
+- search algorithm that expands node with lowest value of g(n) + h(n)
+g(n) = cost to reach node 
+h(n) = estimated cost of goal 
+
+optimal if 
+- h(n) is admissibale (never overestimates the true cost), and 
+- h(n) is consistent (for every node n and successor n' with step cost c, h(n) <= h(n') + c )
+
+### Minimax 
+- MAX(x) aims to maximize score
+- MIN(O) aims to minimize score 
+
+
+## Tik-tak toe gane
+- So - initial state
+- Player(s): returns which player to move in state s
+- Actions(s): returns legal moves in state s
+- Result(s, a): returns state after action a taken in state s 
+- Utility(s): final numerical value for terminal state s
+
+### Alpha-beta pruning
+
+Prune umuesful elements from the search tree
+
+- 255 168 possible tik-tak toe games can be played 
+
+- 288 000 000 000 total possible chess games after four moves each 
+
+- 10 in 29000 total possible chess games (lower bound)
+
+### Depth-limited Minimax 
+- **evaluation function** - function that estimates the expected utility of the game from a given state 
+
+- in chess you can write evaluation function how many pieces you hava and how many pieces your oponent has 
+
+## Knowledge
+- human make concusions based on knowledge 
+
+- **lnowledge-based agents** - agents that reason by operating on internal representations of knowledge 
+
+Example:
+- If it didn't rain, Harry visited Hagrid today 
+- Harry visited Hagrid or Dumbledore today but not both
+- Harry visited Dumbledore today 
+
+We need some more info to make conclustions
+Harry did not visited Hagrid today -> It rained today
+
+### Sentence 
+- an assertion about the world in a knowledge representation language 
+- **propositional logic** - propositional symbols represent some sentences or facts 
+- not, and, or, implication, biconditional 
+
+- **Not** -> p - true; -p - false; p - false; -p - true;
+
+- **AND** -> p - false; q - false; p AND q - false;
+- p - false; q - true; p AND q - false;
+- p - true; q - false; p AND q - false;
+- p - true; q - true; p AND q - true;
+
+- **OR** -> p - false; q - false; p OR q - false;
+- p - false; q - true; p OR q - true;
+- p - true; q - false; p OR q - true;
+- p - true; q - true; p OR q - true; 
+
+- **Implication (-->)** -> p - false; q - false; p --> q - true;
+- p - false; q - true; p --> q - true;
+- p - true; q - false; p --> q - false;
+- p - true; q - true; p --> q - true;  
+
+- **Biconditional (<-->)** -> p - false; q - false; p <--> q - true;
+- p - false; q - true; p <--> q - false;
+- p - true; q - false; p <--> q - false;
+- p - true; q - true; p <--> q - true; 
+
+### model 
+- assignment of a truth value to every propotional symbol (a "possibe world")
+
+### Entailement 
+- a |= b 
+- aplha entails bera 
+- entailment means that in every model where a is true, b is also true
+
+
+- Inference - the process of deriving new sentences from old ones 
+
+- you put some sentences to AI, and using algoruthms AI coniders somt other sentecnes to be true 
+
+- **model checking**  - is it true or false 
+- to determine if KB |= a
+-- enumerate all possible models 
+-- if in every model KB is true, a is true, then KB entails a
+
+### Example
+- p: it is a Tuesday; q: it is raining; r: Harry will go for a run 
+
+- KB: (p AND NOT q) --> r   p    not q
+
+Query: r
+
+p        q          r          KB
+false    false      false      false
+false    false      true       false
+false    true      false       false
+false    true       true       false
+true    false      false       false
+true    false      true         true
+true    true      false        false
+true    true      true         false 
+
+
+
